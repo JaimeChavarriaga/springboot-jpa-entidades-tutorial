@@ -1,0 +1,12 @@
+/mnt/c/proyectos/unillanos/springboot-jpa-entidades-tutorial/biblioteca-inicio/src/main/java/com/ingesoft/biblioteca/repository/CopiaLibroRepository.java
+/mnt/c/proyectos/unillanos/springboot-jpa-entidades-tutorial/biblioteca-inicio/src/main/java/com/ingesoft/biblioteca/model/Autor.java
+/mnt/c/proyectos/unillanos/springboot-jpa-entidades-tutorial/biblioteca-inicio/src/main/java/com/ingesoft/biblioteca/model/Libro.java
+/mnt/c/proyectos/unillanos/springboot-jpa-entidades-tutorial/biblioteca-inicio/src/main/java/com/ingesoft/biblioteca/repository/AutorRepository.java
+/mnt/c/proyectos/unillanos/springboot-jpa-entidades-tutorial/biblioteca-inicio/src/main/java/com/ingesoft/biblioteca/repository/LibroRepository.java
+/mnt/c/proyectos/unillanos/springboot-jpa-entidades-tutorial/biblioteca-inicio/src/main/java/com/ingesoft/biblioteca/repository/UsuarioRepository.java
+/mnt/c/proyectos/unillanos/springboot-jpa-entidades-tutorial/biblioteca-inicio/src/main/java/com/ingesoft/biblioteca/model/CopiaLibro.java
+/mnt/c/proyectos/unillanos/springboot-jpa-entidades-tutorial/biblioteca-inicio/src/main/java/com/ingesoft/biblioteca/init/DataInitializer.java
+/mnt/c/proyectos/unillanos/springboot-jpa-entidades-tutorial/biblioteca-inicio/src/main/java/com/ingesoft/biblioteca/model/Prestamo.java
+/mnt/c/proyectos/unillanos/springboot-jpa-entidades-tutorial/biblioteca-inicio/src/main/java/com/ingesoft/biblioteca/model/Usuario.java
+/mnt/c/proyectos/unillanos/springboot-jpa-entidades-tutorial/biblioteca-inicio/src/main/java/com/ingesoft/biblioteca/BibliotecaInicioApplication.java
+/mnt/c/proyectos/unillanos/springboot-jpa-entidades-tutorial/biblioteca-inicio/src/main/java/com/ingesoft/biblioteca/repository/PrestamoRepository.java
