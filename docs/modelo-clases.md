@@ -1,3 +1,5 @@
+# Modelo de clases
+
 ```mermaid
 %% Diagrama de clases para biblioteca
 classDiagram
@@ -12,7 +14,7 @@ classDiagram
         +Date updatedAt
     }
 
-    class Libro {
+    class Libro {|
         +Long id
         +String titulo
         +String isbn
@@ -59,6 +61,5 @@ classDiagram
     CopiaLibro "1" -- "0..1" Prestamo : esPrestadaA
 
     %% Notas de integridad
-    note for Prestamo "Prestamo relaciona una CopiaLibro con un Usuario.\nfechaDevolucion puede ser null si no se ha devuelto." 
-
+    note for Prestamo "Prestamo relaciona una CopiaLibro con un Usuario.\nfechaDevolucion puede ser null si no se ha devuelto."
 ```
