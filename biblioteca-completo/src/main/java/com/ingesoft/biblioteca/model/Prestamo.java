@@ -18,6 +18,7 @@ public class Prestamo {
     private Instant fechaVencimiento;
     private Instant fechaDevolucion;
     private String notas;
+
     @CreatedDate
     private Instant createdAt;
 
@@ -29,11 +30,6 @@ public class Prestamo {
 
     @LastModifiedBy
     private String lastModifiedBy;
-
-    public String getCreatedBy() { return createdBy; }
-    public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
-    public String getLastModifiedBy() { return lastModifiedBy; }
-    public void setLastModifiedBy(String lastModifiedBy) { this.lastModifiedBy = lastModifiedBy; }
 
     @ManyToOne
     private Usuario usuario;
@@ -55,6 +51,10 @@ public class Prestamo {
     public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
     public Instant getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(Instant updatedAt) { this.updatedAt = updatedAt; }
+    public String getCreatedBy() { return createdBy; }
+    public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
+    public String getLastModifiedBy() { return lastModifiedBy; }
+    public void setLastModifiedBy(String lastModifiedBy) { this.lastModifiedBy = lastModifiedBy; }
     public Usuario getUsuario() { return usuario; }
     public void setUsuario(Usuario usuario) { this.usuario = usuario; }
     public CopiaLibro getCopia() { return copia; }

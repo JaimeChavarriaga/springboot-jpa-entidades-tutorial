@@ -17,46 +17,44 @@ public class PrestamoService {
     private final CopiaLibroRepository copiaRepo;
     private final PrestamoRepository prestRepo;
 
-    public PrestamoService(CopiaLibroRepository copiaRepo, PrestamoRepository prestRepo) {
-        this.copiaRepo = copiaRepo;
-        this.prestRepo = prestRepo;
-    }
-
-    @Transactional
-    public Prestamo prestar(String codigoBarras, Usuario usuario) {
-        CopiaLibro copia = copiaRepo.findByCodigoBarras(codigoBarras)
-                .orElseThrow(() -> new IllegalArgumentException("Copia no encontrada"));
-        if (!Boolean.TRUE.equals(copia.getDisponible())) {
-            throw new IllegalStateException("Copia no disponible");
+        public PrestamoService(CopiaLibroRepository copiaRepo, PrestamoRepository prestRepo) {
+            this.copiaRepo = copiaRepo;
+            this.prestRepo = prestRepo;
         }
-        // validar sanciones/limites del usuario (omitir detalle)
 
-        Prestamo p = new Prestamo();
-        p.setCopia(copia);
-        p.setUsuario(usuario);
-        p.setFechaPrestamo(Instant.now());
-        p.setFechaVencimiento(Instant.now().plus(14, ChronoUnit.DAYS));
-        prestRepo.save(p);
+        @Transactional
+        public Prestamo prestar(String codigoBarras, Usuario usuario) {
+            CopiaLibro copia = copiaRepo.findByCodigoBarras(codigoBarras)
+                    .orElseThrow(() -> new IllegalArgumentException("Copia no encontrada"));
+            if (!Boolean.TRUE.equals(copia.getDisponible())) {
+                throw new IllegalStateException("Copia no disponible");
+            }
 
-        copia.setDisponible(false);
-        copiaRepo.save(copia);
+            Prestamo p = new Prestamo();
+            p.setCopia(copia);
+            p.setUsuario(usuario);
+            p.setFechaPrestamo(Instant.now());
+            p.setFechaVencimiento(Instant.now().plus(14, ChronoUnit.DAYS));
+            prestRepo.save(p);
 
-        return p;
-    }
+            copia.setDisponible(false);
+            copiaRepo.save(copia);
 
-    @Transactional
-    public Prestamo devolver(String codigoBarras) {
-        CopiaLibro copia = copiaRepo.findByCodigoBarras(codigoBarras)
-                .orElseThrow(() -> new IllegalArgumentException("Copia no encontrada"));
-        Prestamo p = prestRepo.findByCopiaIdAndFechaDevolucionIsNull(copia.getId())
-                .orElseThrow(() -> new IllegalStateException("No hay préstamo activo para esta copia"));
-        p.setFechaDevolucion(Instant.now());
-        prestRepo.save(p);
+            return p;
+        }
 
-        copia.setDisponible(true);
-        copiaRepo.save(copia);
+        @Transactional
+        public Prestamo devolver(String codigoBarras) {
+            CopiaLibro copia = copiaRepo.findByCodigoBarras(codigoBarras)
+                    .orElseThrow(() -> new IllegalArgumentException("Copia no encontrada"));
+            Prestamo p = prestRepo.findByCopiaIdAndFechaDevolucionIsNull(copia.getId())
+                    .orElseThrow(() -> new IllegalStateException("No hay préstamo activo para esta copia"));
+            p.setFechaDevolucion(Instant.now());
+            prestRepo.save(p);
 
-        // calcular sanciones si corresponde (omitir detalle)
-        return p;
-    }
+            copia.setDisponible(true);
+            copiaRepo.save(copia);
+
+            return p;
+        }
 }

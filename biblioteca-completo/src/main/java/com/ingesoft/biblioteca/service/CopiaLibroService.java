@@ -17,6 +17,4 @@ public class CopiaLibroService {
     public CopiaLibro create(CopiaLibro c) { c.setCreatedAt(Instant.now()); c.setUpdatedAt(Instant.now()); return copiaRepo.save(c); }
     public Optional<CopiaLibro> findByCodigo(String codigo) { return copiaRepo.findByCodigoBarras(codigo); }
     public List<CopiaLibro> findAll() { return copiaRepo.findAll(); }
-    public CopiaLibro update(Long id, CopiaLibro c) { CopiaLibro ex = copiaRepo.findById(id).orElseThrow(); ex.setUbicacion(c.getUbicacion()); ex.setUpdatedAt(Instant.now()); return copiaRepo.save(ex); }
-    public void delete(Long id) { copiaRepo.deleteById(id); }
 }

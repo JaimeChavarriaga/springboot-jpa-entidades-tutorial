@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.Optional;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -82,7 +81,6 @@ public class DataInitializer implements CommandLineRunner {
         u1.setEmail("ana.lopez@example.com");
         usuarioRepo.save(u1);
 
-        // Crear un préstamo activo
         Prestamo p = new Prestamo();
         p.setCopia(c1);
         p.setUsuario(u1);

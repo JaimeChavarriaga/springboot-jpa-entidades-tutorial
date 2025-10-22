@@ -15,7 +15,17 @@ public class LibroService {
 
     public Libro create(Libro l) { l.setCreatedAt(Instant.now()); l.setUpdatedAt(Instant.now()); return libroRepo.save(l); }
     public List<Libro> findAll() { return libroRepo.findAll(); }
-    public Libro findById(Long id) { return libroRepo.findById(id).orElseThrow(); }
-    public Libro update(Long id, Libro l) { Libro ex = libroRepo.findById(id).orElseThrow(); ex.setTitulo(l.getTitulo()); ex.setIsbn(l.getIsbn()); ex.setEditorial(l.getEditorial()); ex.setAnioPublicacion(l.getAnioPublicacion()); ex.setUpdatedAt(Instant.now()); return libroRepo.save(ex); }
+
+    public Libro findById(Long id) { return libroRepo.findById(id).orElseThrow(() -> new RuntimeException("Libro not found")); }
+
+    public Libro update(Long id, Libro l) {
+        Libro existing = findById(id);
+        existing.setTitulo(l.getTitulo());
+        existing.setIsbn(l.getIsbn());
+        existing.setEditorial(l.getEditorial());
+        existing.setUpdatedAt(Instant.now());
+        return libroRepo.save(existing);
+    }
+
     public void delete(Long id) { libroRepo.deleteById(id); }
 }

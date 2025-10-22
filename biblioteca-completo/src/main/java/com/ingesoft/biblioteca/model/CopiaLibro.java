@@ -19,6 +19,7 @@ public class CopiaLibro {
     private String codigoBarras;
     private String ubicacion;
     private Boolean disponible = true;
+
     @CreatedDate
     private Instant createdAt;
 
@@ -30,11 +31,6 @@ public class CopiaLibro {
 
     @LastModifiedBy
     private String lastModifiedBy;
-
-    public String getCreatedBy() { return createdBy; }
-    public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
-    public String getLastModifiedBy() { return lastModifiedBy; }
-    public void setLastModifiedBy(String lastModifiedBy) { this.lastModifiedBy = lastModifiedBy; }
 
     @ManyToOne
     private Libro libro;
@@ -51,6 +47,10 @@ public class CopiaLibro {
     public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
     public Instant getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(Instant updatedAt) { this.updatedAt = updatedAt; }
+    public String getCreatedBy() { return createdBy; }
+    public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
+    public String getLastModifiedBy() { return lastModifiedBy; }
+    public void setLastModifiedBy(String lastModifiedBy) { this.lastModifiedBy = lastModifiedBy; }
     public Libro getLibro() { return libro; }
     public void setLibro(Libro libro) { this.libro = libro; }
 }

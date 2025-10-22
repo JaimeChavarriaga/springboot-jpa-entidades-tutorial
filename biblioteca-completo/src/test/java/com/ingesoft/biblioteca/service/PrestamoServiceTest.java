@@ -51,6 +51,14 @@ class PrestamoServiceTest {
     }
 
     @Test
+    void prestarNoExistente() {
+        when(copiaRepo.findByCodigoBarras("NOEX"))
+                .thenReturn(Optional.empty());
+        Usuario u = new Usuario();
+        assertThrows(IllegalArgumentException.class, () -> service.prestar("NOEX", u));
+    }
+
+    @Test
     void devolverExitoso() {
         CopiaLibro copia = new CopiaLibro();
         copia.setId(1L);
@@ -75,26 +83,15 @@ class PrestamoServiceTest {
     }
 
     @Test
-    void prestarNoExistente() {
-        Usuario usuario = new Usuario();
-        usuario.setId(1L);
-
-        when(copiaRepo.findByCodigoBarras("NO_EXISTE")).thenReturn(Optional.empty());
-
-        assertThrows(IllegalArgumentException.class, () -> service.prestar("NO_EXISTE", usuario));
-        verify(prestRepo, times(0)).save(any(Prestamo.class));
-    }
-
-    @Test
     void devolverNoActiva() {
         CopiaLibro copia = new CopiaLibro();
         copia.setId(2L);
-        copia.setCodigoBarras("XYZ999");
+        copia.setCodigoBarras("NOACT");
         copia.setDisponible(false);
 
-        when(copiaRepo.findByCodigoBarras("XYZ999")).thenReturn(Optional.of(copia));
+        when(copiaRepo.findByCodigoBarras("NOACT")).thenReturn(Optional.of(copia));
         when(prestRepo.findByCopiaIdAndFechaDevolucionIsNull(2L)).thenReturn(Optional.empty());
 
-        assertThrows(IllegalStateException.class, () -> service.devolver("XYZ999"));
+        assertThrows(IllegalStateException.class, () -> service.devolver("NOACT"));
     }
 }

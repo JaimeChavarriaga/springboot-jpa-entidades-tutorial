@@ -19,6 +19,7 @@ public class Libro {
     private String isbn;
     private Integer anioPublicacion;
     private String editorial;
+
     @CreatedDate
     private Instant createdAt;
 
@@ -30,11 +31,6 @@ public class Libro {
 
     @LastModifiedBy
     private String lastModifiedBy;
-
-    public String getCreatedBy() { return createdBy; }
-    public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
-    public String getLastModifiedBy() { return lastModifiedBy; }
-    public void setLastModifiedBy(String lastModifiedBy) { this.lastModifiedBy = lastModifiedBy; }
 
     @ManyToOne
     private Autor autor;
@@ -56,6 +52,10 @@ public class Libro {
     public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
     public Instant getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(Instant updatedAt) { this.updatedAt = updatedAt; }
+    public String getCreatedBy() { return createdBy; }
+    public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
+    public String getLastModifiedBy() { return lastModifiedBy; }
+    public void setLastModifiedBy(String lastModifiedBy) { this.lastModifiedBy = lastModifiedBy; }
     public Autor getAutor() { return autor; }
     public void setAutor(Autor autor) { this.autor = autor; }
     public List<CopiaLibro> getCopias() { return copias; }

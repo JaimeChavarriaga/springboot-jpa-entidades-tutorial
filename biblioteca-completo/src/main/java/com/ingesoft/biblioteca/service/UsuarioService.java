@@ -26,7 +26,8 @@ public class UsuarioService {
     public List<Usuario> findAll() { return usuarioRepo.findAll(); }
 
     public Usuario update(Long id, Usuario u) {
-        Usuario existing = usuarioRepo.findById(id).orElseThrow();
+        Usuario existing = usuarioRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario not found with id: " + id));
         existing.setNombre(u.getNombre());
         existing.setApellido(u.getApellido());
         existing.setEmail(u.getEmail());

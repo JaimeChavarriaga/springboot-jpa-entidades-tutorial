@@ -5,7 +5,6 @@ import com.ingesoft.biblioteca.service.CopiaLibroService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -16,17 +15,8 @@ public class CopiaLibroController {
     public CopiaLibroController(CopiaLibroService copiaService) { this.copiaService = copiaService; }
 
     @PostMapping
-    public ResponseEntity<CopiaLibro> create(@RequestBody CopiaLibro c) { CopiaLibro created = copiaService.create(c); return ResponseEntity.created(URI.create("/api/copias/" + created.getId())).body(created); }
+    public ResponseEntity<CopiaLibro> create(@RequestBody CopiaLibro c) { return ResponseEntity.ok(copiaService.create(c)); }
 
     @GetMapping
-    public List<CopiaLibro> list() { return copiaService.findAll(); }
-
-    @GetMapping("/codigo/{codigo}")
-    public ResponseEntity<CopiaLibro> getByCodigo(@PathVariable String codigo) { return copiaService.findByCodigo(codigo).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build()); }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<CopiaLibro> update(@PathVariable Long id, @RequestBody CopiaLibro c) { return ResponseEntity.ok(copiaService.update(id, c)); }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) { copiaService.delete(id); return ResponseEntity.noContent().build(); }
+    public ResponseEntity<List<CopiaLibro>> list() { return ResponseEntity.ok(copiaService.findAll()); }
 }

@@ -20,7 +20,7 @@ public class PrestamoController {
 
     @PostMapping("/prestar/{codigo}")
     public ResponseEntity<Prestamo> prestar(@PathVariable String codigo, @RequestParam Long usuarioId) {
-        Usuario usuario = usuarioService.findById(usuarioId).orElseThrow();
+        Usuario usuario = usuarioService.findById(usuarioId).orElseThrow(() -> new RuntimeException("Usuario not found"));
         Prestamo p = prestamoService.prestar(codigo, usuario);
         return ResponseEntity.ok(p);
     }

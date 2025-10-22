@@ -17,6 +17,7 @@ public class Autor {
     private String nombre;
     private String apellido;
     private Instant fechaNacimiento;
+
     @CreatedDate
     private Instant createdAt;
 
@@ -28,11 +29,6 @@ public class Autor {
 
     @LastModifiedBy
     private String lastModifiedBy;
-
-    public String getCreatedBy() { return createdBy; }
-    public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
-    public String getLastModifiedBy() { return lastModifiedBy; }
-    public void setLastModifiedBy(String lastModifiedBy) { this.lastModifiedBy = lastModifiedBy; }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -46,4 +42,8 @@ public class Autor {
     public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
     public Instant getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(Instant updatedAt) { this.updatedAt = updatedAt; }
+    public String getCreatedBy() { return createdBy; }
+    public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
+    public String getLastModifiedBy() { return lastModifiedBy; }
+    public void setLastModifiedBy(String lastModifiedBy) { this.lastModifiedBy = lastModifiedBy; }
 }

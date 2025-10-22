@@ -25,7 +25,10 @@ public class AutorController {
     public ResponseEntity<Autor> get(@PathVariable Long id) { return ResponseEntity.ok(autorService.findById(id)); }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Autor> update(@PathVariable Long id, @RequestBody Autor a) { return ResponseEntity.ok(autorService.update(id, a)); }
+    public ResponseEntity<Autor> update(@PathVariable Long id, @RequestBody Autor a) {
+        Autor updated = autorService.update(id, a);
+        return ResponseEntity.ok(updated);
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) { autorService.delete(id); return ResponseEntity.noContent().build(); }
